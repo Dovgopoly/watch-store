@@ -1,0 +1,33 @@
+<h1 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
+<!-- <pre>
+    {{ (authService.user | async | json) }}
+</pre> -->
+
+<div *ngIf="!(authService.user | async)">
+
+  <div *ngIf="is_login===true; else register">
+    <h2>Вход</h2>
+  
+    <input type="text" [(ngModel)]="email" placeholder="email">
+    <input type="password" [(ngModel)]="password" placeholder="password">
+
+    <button (click)="login()" [disabled]="!email || !password">Login</button>
+    <br>
+    <a routerLink="/register" >Еще нет аккаунта?</a>
+  </div>
+
+  
+  <ng-template #register>
+    <h2>Регистрация</h2>
+    <input type="text" [(ngModel)]="email" placeholder="email">
+    <input type="password" [(ngModel)]="password" placeholder="password">
+
+    <button (click)="signup()" [disabled]="!email || !password">Signup</button>
+    <br>
+    <a routerLink="/login" >Уже есть аккаунт?</a>
+  </ng-template>
+</div>
+
+<button (click)="logout()" *ngIf="authService.user | async">
+  Logout
+</button> 
