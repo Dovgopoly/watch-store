@@ -9,11 +9,13 @@ const appRoutes: Routes = [
     path: 'login',
     loadChildren: './core/auth/auth.module#AuthModule',
     data: {is_login: true},
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
     loadChildren: './core/auth/auth.module#AuthModule',
     data: {is_login: false},
+    canActivate: [AuthGuard]
   },
   {
     path: 'watches',
@@ -29,6 +31,11 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/watches',
     pathMatch: 'full'
+  },
+  {
+    path: 'hotels',
+    loadChildren: './features/hotels/hotels.module#HotelsModule',
+    canActivate: [AuthGuard]
   },
   /*{ path: '**', component: PageNotFoundComponent }*/
 ];

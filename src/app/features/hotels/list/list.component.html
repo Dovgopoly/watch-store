@@ -1,0 +1,40 @@
+<div class="element-left">
+  <div class="element-bg-img">
+    <img *ngIf="selectedHotel" [src]="selectedHotel.photo[0]" alt="" class="img-responsive">
+  </div>
+  <div class="element-left-bottom">
+    <div class="ele-strip">
+      <ul>
+          <li><a (click)="tab=''"  [ngClass]="{'active-link': tab === ''}">All</a></li>
+          <li><a (click)="tab=3"   [ngClass]="{'active-link': tab === 3}">3</a></li>
+          <li><a (click)="tab=4"   [ngClass]="{'active-link': tab === 4}">4</a></li>
+          <li><a (click)="tab=5"   [ngClass]="{'active-link': tab === 5}">5</a></li>
+      </ul>
+    </div>
+    <div class="village">
+      <h3>Righteous indignation & like</h3>
+      <span class="line"> </span>
+      <div class="activity_box">
+        <div class="scrollbar" id="style-2">
+              <div  class="activity-row" *ngFor="let hotel of hotels | tab: tab" (click)="selectHotel(hotel)" 
+          [ngClass]="{'active-hotel': hotel.id === selectedHotel.id}">
+            <div class="activity-desc">
+              <h5>{{hotel.title}}</h5>
+              <p>{{hotel.description}}</p>
+              <p>{{hotel.address}}</p>
+              <h6>Tel:{{hotel.phone}}</h6>
+            </div>
+            <div class="activity-img">
+              <ul>
+                <li *ngFor="let photo of hotel.photo">
+                  <img [src]="photo"  alt=""/>
+                </li>
+              </ul>
+            </div>
+            <div class="clear"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

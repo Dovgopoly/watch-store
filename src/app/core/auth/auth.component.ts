@@ -24,7 +24,6 @@ export class AuthComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private route: ActivatedRoute,
-    private firebaseAuth: AngularFireAuth,
     private router: Router,
     ) {
     this.is_login = route.snapshot.data['is_login'];

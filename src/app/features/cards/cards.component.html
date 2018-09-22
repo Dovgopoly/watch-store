@@ -1,3 +1,4 @@
+
 <div class="product"> 
   <div class="container">
     <div class="product-top">
@@ -8,7 +9,7 @@
               <div class="product-bottom">
                 <h3>{{ card.title }}</h3>
                 <p>{{ card.description }}</p> 
-                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ {{ card.price }}</span></h4>
+                <h4><a class="item_add" (click)="addToBusket(card)"><i></i></a> <span class=" item_price">$ {{ card.price }}</span></h4>
               </div>
               <div class="srch">
                 <span>-{{ card.discount }}%</span>

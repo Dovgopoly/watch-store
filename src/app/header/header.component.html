@@ -1,0 +1,46 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" routerLink="/">Angular</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngIf="authState">
+              <a class="nav-link" routerLink="/watches">Watches</a>
+            </li>
+            <li class="nav-item" *ngIf="authState">
+              <a class="nav-link" routerLink="/hotels">Hotels</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+              <ul class="navbar-nav mr-auto" *ngIf="authState; else authless">
+                  <li class="busket">
+                    <a href="checkout.html">
+                        <span class="total">${{ busketTotal }}</span>
+                        <img src="assets/images/cart-1.png" alt="" />
+                    </a>
+                  </li> 
+                  <li class="nav-item" *ngIf="authState">
+                    <a (click)="doLogout(logout)" routerLink="/login" class="nav-link">Выход</a>
+                  </li>
+              </ul>
+              <ng-template #authless>
+                  <ul class="navbar-nav mr-auto"> 
+                    <li class="nav-item" *ngIf="!authState">
+                      <a class="nav-link" routerLink="/login">Вход</a>
+                    </li>
+                    <li class="nav-item" *ngIf="!authState">
+                      <a class="nav-link" routerLink="/register">Регистрация</a>
+                    </li>
+                  </ul>
+              </ng-template>
+          </form>
+        </div>
+      </div>
+      </nav>
+
+</header>

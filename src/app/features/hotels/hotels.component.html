@@ -1,0 +1,13 @@
+<h1>Hot Weather Widget</h1>
+<div class="element">
+  <app-list [selectedHotel]="selectedHotel" [hotels]="hotels" (hotel)="selectHotel($event)">
+  </app-list>
+  <div class="element-right">
+    <app-weather *ngIf="selectedHotel" [weather]="selectedHotel.weather"></app-weather>
+    <app-info *ngIf="selectedHotel" [info]="selectedHotel.info"></app-info>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="copy-right">
+  <p>© 2015 Hot Weather Widget. All rights reserved | Design by  <a href="http://w3layouts.com/" target="_blank">  W3layouts </a></p>
+</div>

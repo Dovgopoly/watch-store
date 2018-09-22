@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ICard } from '../../interfaces/card.interface';
-import { Observable } from 'rxjs';
 import { CardService } from '../../core/services/card/card.service';
+import { BusketService } from '../../core/services/busket/busket.service';
 
 @Component({
   selector: 'app-cards',
@@ -12,13 +12,20 @@ export class CardsComponent implements OnInit {
 
   public cards: ICard[];
 
-  constructor(private cardService: CardService) {
+  @Output()
+  public price: EventEmitter<any> = new EventEmitter();
+
+  constructor(private cardService: CardService, private busketService: BusketService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.cardService.getCards().subscribe(cards => {
       this.cards = cards;
     });
+  }
+
+  public addToBusket(card) {
+    this.busketService.addToBusket(card);
   }
 
 }

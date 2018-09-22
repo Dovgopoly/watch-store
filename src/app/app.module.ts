@@ -9,10 +9,13 @@ import { CardsComponent } from './features/cards/cards.component';
 import { CardsModule } from './features/cards/cards.module';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
+import { BusketService } from './core/services/busket/busket.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     RouterModule,
@@ -23,7 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     FeaturesModule
   ],
-  providers: [],
+  providers: [BusketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

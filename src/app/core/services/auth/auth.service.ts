@@ -11,18 +11,10 @@ import { async } from 'q';
 @Injectable()
 export class AuthService {
   public user: Observable<firebase.User | null>;
-  public AuthState: boolean;
 
-    constructor(public firebaseAuth: AngularFireAuth, private router: Router) {
-      this.user = firebaseAuth.authState;
-    }
-
-  // public isAuthenticated(): boolean {
-  //   const token = localStorage.getItem('token');
-  //   // Check whether the token is expired and return
-  //   // true or false
-  //   return !this.jwtHelper.isTokenExpired(token);
-  // }
+  constructor(public firebaseAuth: AngularFireAuth, private router: Router) {
+    this.user = firebaseAuth.authState;
+  }
 
 
   signup(email: string, password: string) {
@@ -31,6 +23,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Success!', value);
+        this.router.navigate(['/']);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -43,6 +36,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Nice, it worked!');
+        this.router.navigate(['/']);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -50,10 +44,10 @@ export class AuthService {
   }
 
   logout() {
-    this.AuthState = false;
     this.firebaseAuth
       .auth
       .signOut();
+      this.router.navigate(['login']);
   }
 
 }
